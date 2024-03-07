@@ -1,4 +1,3 @@
-"use strict";
 /*
 Pattern – 13: Increasing Number Triangle Pattern
 Problem Statement: Given an integer N, print the following pattern :
@@ -18,6 +17,7 @@ Result:
 11  12  13  14  15
 16  17  18  19  20  21
 */
+
 console.time();
 // const pattern = (n: number) => {
 //   let count = 0;
@@ -26,15 +26,18 @@ console.time();
 //     console.log(line.join(' '));
 //   }
 // };
-const pattern = (n) => {
-    let count = 0;
-    for (let i = 0; i < n; i++) {
-        let line = '';
-        for (let j = 0; j <= i; j++) {
-            line += `${count++} `;
-        }
-        console.log(line);
+
+const pattern = (n: number) => {
+  let count = 0;
+  for (let i = 0; i < n; i++) {
+    let line = '';
+    for (let j = 0; j <= i; j++) {
+      line += `${count++} `;
     }
+    console.log(line);
+  }
 };
+
 pattern(10);
+
 console.timeEnd();
