@@ -23,7 +23,7 @@ const pattern = (n: number) => {
   for (let i = 0; i < n; i++) {
     let line = '';
     for (let j = 0; j < n - i - 1; j++) {
-      line += ' ';
+      line += '  ';
     }
 
     let ch = 64;
@@ -38,7 +38,7 @@ const pattern = (n: number) => {
     }
 
     for (let j = 0; j < n - i - 1; j++) {
-      line += ' ';
+      line += '  ';
     }
     console.log(line);
   }
