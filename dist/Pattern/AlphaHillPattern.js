@@ -38,7 +38,6 @@ const pattern = (n) => {
         for (let j = 0; j < n - i - 1; j++) {
             line += ' ';
         }
-        console.log(line);
     }
 };
 pattern(6);
