@@ -19,6 +19,8 @@ Result:
 ABCDEFEDCBA
 */
 
+export {};
+
 const pattern = (n: number) => {
   for (let i = 0; i < n; i++) {
     let line = '';
