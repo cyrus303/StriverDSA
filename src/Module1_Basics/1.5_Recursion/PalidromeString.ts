@@ -33,7 +33,7 @@ const solution = (str: string) => {
   return true;
 };
 
-// console.log(solution('A man, a plan, a canal: Panama'));
+console.log(solution('A man, a plan, a canal: Panama'));
 
 const recursiveSolution = (str: string) => {
   str = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();

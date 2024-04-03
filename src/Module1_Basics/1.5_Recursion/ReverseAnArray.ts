@@ -32,7 +32,7 @@ const solution = (n: number[]) => {
 };
 
 const arr = [5, 4, 3, 2, 1];
-// solution(arr);
+solution(arr);
 
 const solution2 = (n: number[]): void => {
   let start = 0;
