@@ -38,4 +38,26 @@ const solution = (n: number[]) => {
 };
 
 const arr = [2, 2, 3, 4, 4, 2];
-solution(arr);
+// solution(arr);
+
+async function getCharmandar() {
+  const pokemonListUrl = 'https://pokeapi.co/api/v2/pokemon';
+  // get list of pokemon
+  const response = await fetch(pokemonListUrl);
+  const pokeList = await response.json();
+  // find charmander in the array of pokemon
+  const charmanderData = pokeList.results.map(
+    async (poke: {name: string; url: string}) => {
+      const {name, url} = poke;
+      if (name === 'charmander') {
+        const response = await fetch(url);
+        const charmander = await response.json();
+        const response2 = await fetch(charmander.species.url);
+        const result = await response2.json();
+        console.log(result);
+      }
+    }
+  );
+}
+
+getCharmandar();
