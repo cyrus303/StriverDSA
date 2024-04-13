@@ -39,7 +39,7 @@ const solution = (arr: number[], target: number) => {
 const arr = [3, 2, 4];
 const target = 4;
 
-// solution(arr, target);
+solution(arr, target);
 
 const solution2 = (arr: number[], target: number) => {
   for (let i = 0; i < arr.length; i++) {
