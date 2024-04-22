@@ -29,13 +29,13 @@ const solution = (arr: number[], N: number) => {
   for (const value of arr) {
     newArr[value] = value;
   }
-
+  console.log(newArr);
   const index = newArr.slice(1).indexOf('$');
   return index + 1;
 };
 
-const arr = [1, 3];
-const N = 3;
+const arr = [1, 2, 4, 5];
+const N = 5;
 
 const result = solution(arr, N);
 console.log(result);
