@@ -17,24 +17,27 @@ Explanation: The longest subarray with sum 10 is {2, 3, 5}. And its length is 3.
 
 export {};
 
-// const solution = (arr: number[], K: number) => {
-//   let longest = -1;
-//   for (let i = 0; i < arr.length; i++) {
-//     let sum = 0;
-//     for (let j = i; j <= arr.length; j++) {
-//       sum = sum + arr[j];
-//       if (sum === K) {
-//         longest = Math.max(longest, j - i + 1);
-//       }
-//     }
-//   }
-//   console.log(longest);
-// };
+const arr = [1, 2, 3, 1, 1, 1, 1, 3, 3];
+const K = 6;
+
+const solution = (arr: number[], K: number) => {
+  let longest = -1;
+  for (let i = 0; i < arr.length; i++) {
+    let sum = 0;
+    for (let j = i; j <= arr.length; j++) {
+      sum = sum + arr[j];
+      if (sum === K) {
+        longest = Math.max(longest, j - i + 1);
+      }
+    }
+  }
+  console.log(longest);
+};
 
 // const arr = [2, 3, 5, 1, 9];
 // const K = 10;
 
-// solution(arr, K);
+solution(arr, K);
 
 //only if the input array elemets are >= 0
 const betterSolution = (arr: number[], K: number) => {
@@ -59,8 +62,5 @@ const betterSolution = (arr: number[], K: number) => {
   }
   console.log(maxLen);
 };
-
-const arr = [1, 2, 3, 1, 1, 1, 1, 3, 3];
-const K = 6;
 
 betterSolution(arr, K);
