@@ -38,6 +38,7 @@ const solution = (arr: number[]) => {
       count = 0;
     }
   }
+
   console.log(consicutiveOnes);
 };
 
