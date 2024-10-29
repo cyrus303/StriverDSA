@@ -25,7 +25,7 @@ Result:
 
 */
 
-export {};
+export { };
 
 const Pattern = (n: number) => {
   for (let i = 0; i < n; i++) {
