@@ -27,7 +27,7 @@ Result:
 ***********
 */
 
-export { };
+export {};
 
 const pattern = (N: number) => {
   for (let i = 0; i < N; i++) {
@@ -37,9 +37,6 @@ const pattern = (N: number) => {
     }
     for (let j = 0; j < 2 * i + 1; j++) {
       line += "*";
-    }
-    for (let j = 0; j < N - i - 1; j++) {
-      line += " ";
     }
     console.log(line);
   }
