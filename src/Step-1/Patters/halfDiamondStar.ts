@@ -29,7 +29,7 @@ Result:
      **
      *
 */
-export {};
+export { };
 
 const pattern = (N: number) => {
   for (let i = 0; i < N; i++) {
