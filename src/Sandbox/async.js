@@ -1,7 +1,6 @@
-const Users = async () => {
-  const response = await fetch('https://dummyjson.com/users/1');
-  const data = await response.json();
-  return data;
-};
+let promise = new Promise(function (resolve, reject) {
+  //  setTimeout(() => resolve("done"), 2000);
+  setTimeout(() => resolve("done"), 1000);
+});
 
-Users().then((res) => console.log(res));
+promise.then((result) => console.log(result));
