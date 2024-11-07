@@ -1,6 +1,27 @@
-let promise = new Promise(function (resolve, reject) {
-  //  setTimeout(() => resolve("done"), 2000);
-  setTimeout(() => resolve("done"), 1000);
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(1);
+  }, 1000);
 });
 
-promise.then((result) => console.log(result));
+promise
+  .then((result, error) => {
+    console.log(result);
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(result * 10);
+      }, 2000);
+    });
+  })
+  .then((result, error) => {
+    console.log(result);
+    return result + 1;
+  })
+  .then((result, error) => {
+    console.log(result);
+    return result + 1;
+  })
+  .then((result, error) => {
+    console.log(result);
+    return result + 1;
+  });
