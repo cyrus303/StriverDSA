@@ -18,11 +18,16 @@ export { };
 
 const countDigits = (Num: number) => {
   console.log("Number is: ", Num);
-  console.log("length is: ", Num.toString().length);
+  console.log("length of the digits is: ", Num.toString().length);
 
   let count = 0;
 
-  for ()
+  while (Num > 0) {
+    Num = Math.floor(Num / 10)
+    count++
+  }
+
+  console.log("Count: ", count)
 };
 
 countDigits(12345);

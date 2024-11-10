@@ -31,7 +31,7 @@ Result:
     ***    
      *
 */
-export {};
+export { };
 
 const pattern = (N: number) => {
   // Top half of the diamond
