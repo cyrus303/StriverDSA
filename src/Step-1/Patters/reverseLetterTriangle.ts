@@ -21,7 +21,7 @@
 //A B
 //A
 
-export { };
+export {};
 
 function pattern(N: number) {
   const Char = 65;
@@ -36,6 +36,7 @@ function pattern(N: number) {
 
 pattern(6);
 console.log("------------------------------");
+
 const pattern2 = (N: number) => {
   const Char = 65;
   for (let i = 0; i < N; i++) {
