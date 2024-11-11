@@ -15,7 +15,20 @@
 // Explanation: The reverse of number 7789 is 9877.
 
 export { }
+
 const reverseDigits = (Num: number) => {
   console.log(Num.toString().split('').reverse().join(''))
+
+  let reverse = 0;
+
+  while (Num > 0) {
+    let digit = Num % 10; // Get the last digit
+    reverse = reverse * 10 + digit; // Append digit to reversed number
+    Num = Math.floor(Num / 10); // Remove the last digit
+  }
+
+  console.log("Reversed number:", reverse);
 }
+
+
 reverseDigits(12345)
