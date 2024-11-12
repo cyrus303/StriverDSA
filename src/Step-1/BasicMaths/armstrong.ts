@@ -14,15 +14,28 @@
 // Output: True
 // Explanation: 33+53+13 = 27 + 343 + 1 = 371
 
+import { calculatePerformace } from "../../Utils/performace";
+
 export {};
 
 const armstrong = (N: number) => {
   console.log("Input Number is: ", N);
-  const len = N.toString().length;
-
+  let inputNumber = N;
+  const len = inputNumber.toString().length;
   let value = 0;
 
-  for (let i = 0; i < len; i++) {}
+  for (let i = 0; i < len; i++) {
+    let num = inputNumber % 10;
+    inputNumber = Math.floor(inputNumber / 10);
+    value += num ** len;
+  }
+  if (value === N) {
+    console.log(true);
+    return;
+  }
+  console.log(false);
 };
 
-armstrong(153);
+calculatePerformace(() => armstrong(153));
+calculatePerformace(() => armstrong(153));
+calculatePerformace(() => armstrong(123123212312312));
