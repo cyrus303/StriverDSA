@@ -17,6 +17,29 @@ export {};
 
 const checkPrime = (N: number) => {
   console.log("input number is: ", N);
+  if (N < 2) {
+    console.log("Not A Prime Number");
+    return;
+  }
+  if (N === 2) {
+    console.log("Is A Prime Number");
+    return;
+  }
+  if (N % 2 === 0) {
+    console.log("Not A Prime Number");
+    return;
+  }
+
+  let sqrtN = Math.sqrt(N);
+
+  for (let i = 3; i <= sqrtN; i += 2) {
+    if (N % i === 0) {
+      console.log("Not A Prime Number");
+      return;
+    }
+  }
+  console.log("Is A Prime Number");
 };
 
-checkPrime(5);
+checkPrime(13);
+checkPrime(10);
