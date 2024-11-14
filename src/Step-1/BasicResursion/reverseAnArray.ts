@@ -20,13 +20,30 @@ const reverseArray = (num: number[]) => {
   console.log("input array --> ", num);
   const revArr = [];
 
-  for (let i = num.length; i >= 0; i--) {
-    console.log(num.length - i);
-    revArr[num.length - i] = num[i];
+  for (let i = num.length - 1; i >= 0; i--) {
+    revArr[num.length - 1 - i] = num[i];
   }
   console.log("reverse array -->", revArr);
   return revArr;
 };
 const arr = [5, 4, 3, 2, 1];
 
-reverseArray(arr);
+// reverseArray(arr);
+
+const optimisedReverseArr = (num: number[]) => {
+  console.log("input array --> ", num);
+  let i = 0;
+  let j = num.length - 1;
+
+  while (i < j) {
+    let temp = num[i];
+    num[i] = num[j];
+    num[j] = temp;
+
+    i++;
+    j--;
+  }
+  console.log("reverseArray -->", num);
+};
+
+optimisedReverseArr(arr);
