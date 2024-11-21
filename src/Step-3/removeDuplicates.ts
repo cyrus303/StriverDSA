@@ -31,12 +31,21 @@ export {};
 
 const removeDuplicates = (arr: number[]) => {
   console.log("Input Array ->", arr);
-  const uniqueArr = new Set([...arr]);
+  const uniqueArr = [...new Set(arr)];
 
   const uniqueArr2 = arr.filter((ele, index) => arr.indexOf(ele) === index);
 
+  const uniqueArr3: number[] = [];
+
+  arr.forEach((ele) => {
+    if (!uniqueArr3.includes(ele)) {
+      uniqueArr3.push(ele);
+    }
+  });
+
   console.log(uniqueArr);
   console.log(uniqueArr2);
+  console.log(uniqueArr3);
 };
 
 const inputArr = [1, 1, 2, 2, 2, 3, 3];
