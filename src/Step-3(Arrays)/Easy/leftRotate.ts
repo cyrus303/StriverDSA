@@ -46,10 +46,11 @@ const bruteForceSolution = (arr: number[]) => {
 
 const optimisedSolution = (arr: number[]) => {
   let temp = arr[0];
-  for (let i = 0; i < arr.length; i++) {
+
+  for (let i = 0; i < arr.length - 1; i++) {
     arr[i] = arr[i + 1];
   }
-  arr[arr.length] = temp;
+  arr[arr.length - 1] = temp;
 
   return arr;
 };
