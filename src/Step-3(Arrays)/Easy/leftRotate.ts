@@ -28,7 +28,7 @@
 
 export {};
 
-const numbers = [1, 2, 3, 4, 5];
+const arr1 = [1, 2, 3, 4, 5];
 
 const bruteForceSolution = (arr: number[]) => {
   console.log("Input Array ->", arr);
@@ -42,7 +42,9 @@ const bruteForceSolution = (arr: number[]) => {
   return arr;
 };
 
-// console.log(bruteForceSolution(numbers));
+console.log(bruteForceSolution(arr1));
+
+const arr2 = [1, 2, 3, 4, 5, 6];
 
 const optimisedSolution = (arr: number[]) => {
   let temp = arr[0];
@@ -55,7 +57,7 @@ const optimisedSolution = (arr: number[]) => {
   return arr;
 };
 
-console.log(optimisedSolution(numbers));
+console.log(optimisedSolution(arr2));
 
 // const optimalSolution = (arr: number[]) => {};
 
