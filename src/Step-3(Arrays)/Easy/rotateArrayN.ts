@@ -46,7 +46,7 @@ const bruteForceSolution = ({ arr, K, N }: Props) => {
   console.log(arr);
 };
 
-// bruteForceSolution({ arr: numbers, K: 8, N: 7 });
+bruteForceSolution({ arr: numbers, K: 8, N: 7 });
 
 const optimisedSolution = ({ arr, K, N }: Props): void => {
   K = K % N;
