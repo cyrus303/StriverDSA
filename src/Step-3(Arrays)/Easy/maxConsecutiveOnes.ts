@@ -20,16 +20,47 @@
 
 export {};
 
-const numbers = [2, 3, 4];
-const target = 6;
+const numbers = [1, 0, 1, 1, 0, 1];
 
-const bruteForceSolution = (arr: number[]) => {};
+const bruteForceSolution = (arr: number[]) => {
+  let i = 0;
+  let j = 0;
+  let maxCount = 0;
+  let count = 0;
+
+  while (i <= j && j < arr.length) {
+    if (arr[j] === 1) {
+      j++;
+      count++;
+      maxCount = Math.max(maxCount, count);
+    } else {
+      i = j;
+      j++;
+      i++;
+      count = 0;
+    }
+  }
+  return maxCount;
+};
 
 console.log(bruteForceSolution(numbers));
 
-// const optimisedSolution = (arr: number[]) => {};
+const optimisedSolution = (arr: number[]) => {
+  let maxCount = 0;
+  let currentCount = 0;
 
-// console.log(optimisedSolution(arr1));
+  for (const num of arr) {
+    if (num === 1) {
+      currentCount++;
+      maxCount = Math.max(currentCount, maxCount);
+    } else {
+      currentCount = 0;
+    }
+  }
+  return maxCount;
+};
+
+console.log(optimisedSolution(numbers));
 
 // const optimalSolution = (arr: number[]) => {};
 
