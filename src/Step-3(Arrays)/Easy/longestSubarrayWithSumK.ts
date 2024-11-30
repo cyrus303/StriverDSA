@@ -15,17 +15,44 @@
 
 export {};
 
-const numbers = [2, 3, 4];
-const target = 6;
+const numbers = [2, 3, 5, 1, 9];
+const target = 9;
 
-const bruteForceSolution = (arr: number[]) => {};
+const bruteForceSolution = (arr: number[], target: number) => {
+  let longest = -Infinity;
 
-console.log(bruteForceSolution(numbers));
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i; j < arr.length; j++) {
+      let sum = 0;
 
-// const optimisedSolution = (arr: number[]) => {};
+      for (let k = i; k <= j; k++) {
+        sum = sum + arr[k];
+      }
 
-// console.log(optimisedSolution(arr1));
+      if (sum === target) {
+        longest = Math.max(longest, j - i + 1);
+      }
+    }
+  }
+  return longest;
+};
 
-// const optimalSolution = (arr: number[]) => {};
+console.log(bruteForceSolution(numbers, target));
 
-// console.log(optimalSolution(arr1));
+const optimisedSolution = (arr: number[], target: number) => {
+  let longest = -Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    let sum = 0;
+    for (let j = i; j < arr.length; j++) {
+      sum = sum + arr[j];
+
+      if (sum === target) {
+        longest = Math.max(longest, j - i + 1);
+      }
+    }
+  }
+  return longest;
+};
+
+console.log(optimisedSolution(numbers, target));
