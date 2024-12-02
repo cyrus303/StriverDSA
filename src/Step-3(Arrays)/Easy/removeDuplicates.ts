@@ -48,5 +48,5 @@ const removeDuplicates = (arr: number[]) => {
   console.log(uniqueArr3);
 };
 
-const inputArr = [1, 1, 2, 2, 2, 3, 3];
+const inputArr = [9, 1, 1, 2, 2, 2, 3, 3];
 removeDuplicates(inputArr);

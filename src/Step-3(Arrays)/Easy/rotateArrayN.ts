@@ -40,13 +40,15 @@ const bruteForceSolution = ({ arr, K, N }: Props) => {
     i++;
   }
 
-  for (let i = modK - 1; i >= 0; i--) {
+  console.log("pop array ->", popArray);
+
+  for (let i = 0; i < popArray.length; i++) {
     arr.push(popArray[i] as number);
   }
   console.log(arr);
 };
 
-bruteForceSolution({ arr: numbers, K: 8, N: 7 });
+bruteForceSolution({ arr: numbers, K: 11, N: 7 });
 
 const optimisedSolution = ({ arr, K, N }: Props): void => {
   K = K % N;
@@ -68,7 +70,7 @@ const optimisedSolution = ({ arr, K, N }: Props): void => {
 };
 
 const array2 = [3, 7, 8, 9, 10, 11, 13];
-optimisedSolution({ arr: array2, K: 7, N: array2.length });
+// optimisedSolution({ arr: numbers, K: 11, N: 7 });
 
 // const optimalSolution = (arr: number[]) => {};
 
