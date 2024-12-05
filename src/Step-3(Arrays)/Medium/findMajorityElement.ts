@@ -64,19 +64,14 @@ const optimisedSolution = (arr: number[]) => {
     HashTwo.set(element, (HashTwo.get(element) | 0) + 1);
   });
 
-  console.log("HashOne ->", HashOne);
-  console.log("HashTwo ->", HashTwo);
-
   for (let [key, value] of Object.entries(HashOne)) {
     if (value > Math.floor(len / 2)) {
-      // return key;
       console.log("Key ->", key);
     }
   }
 
   for (let [key, value] of HashTwo) {
     if (value > Math.floor(len / 2)) {
-      // return key;
       console.log("Key ->", key);
     }
   }
