@@ -24,63 +24,30 @@
 
 export {};
 
-const numbers = [1, 2, 3];
+const inputArr = [1, 2, 3];
 
-//NOTE: recursion and backtracking
+const optimalSolution = (inputArr: number[]) => {
+  console.log("inputArr ->", inputArr);
 
-const permutationHelper = (
-  inputArr: number[],
-  idx: number,
-  ansArr: number[][],
-) => {
-  if (idx === inputArr.length) {
-    ansArr.push([...inputArr]);
-    return;
-  }
+  let len = inputArr.length;
+  let pivotIndex = -1;
 
-  for (let i = idx; i < inputArr.length; i++) {
-    [inputArr[idx], inputArr[i]] = [inputArr[i], inputArr[idx]];
-    permutationHelper(inputArr, idx + 1, ansArr);
-    [inputArr[i], inputArr[idx]] = [inputArr[idx], inputArr[i]];
-  }
-};
-
-const bruteForceSolution = (inputArr: number[]) => {
-  const ansArr: number[][] = [];
-  const idx = 0;
-  permutationHelper(inputArr, idx, ansArr);
-  return ansArr;
-};
-
-console.log("bruteForceSolution ->", bruteForceSolution(numbers));
-
-//NOTE: Recusrion with string slice
-
-function generatePermutations(arr: number[]) {
-  const results: number[][] = [];
-
-  if (arr.length === 1) return [arr];
-
-  for (let i = 0; i < arr.length; i++) {
-    const current = arr[i];
-
-    const remaining = arr.slice(0, i).concat(arr.slice(i + 1)); // Remove current element
-
-    const perms: number[][] = generatePermutations(remaining);
-
-    for (const perm of perms) {
-      results.push([current, ...perm]);
+  for (let i = len - 2; i >= 0; i--) {
+    if (inputArr[i] < inputArr[i + 1]) {
+      pivotIndex = i;
+      break;
     }
   }
-  return results;
-}
+  for (let i = len - 1; i >= pivotIndex; i--) {
+    if (inputArr[i] > inputArr[pivotIndex]) {
+      [inputArr[pivotIndex], inputArr[i]] = [inputArr[i], inputArr[pivotIndex]];
+      break;
+    }
+  }
+  const afterIndexArray = inputArr.splice(pivotIndex + 1).reverse();
+  const next_permutation = inputArr.concat(afterIndexArray);
 
-console.log(generatePermutations(numbers));
+  return next_permutation;
+};
 
-// const optimisedSolution = (arr: number[]) => {};
-
-// console.log(optimisedSolution(arr1));
-
-// const optimalSolution = (arr: number[]) => {};
-
-// console.log(optimalSolution(arr1));
+console.log("final answer ->", optimalSolution(inputArr));
