@@ -24,7 +24,7 @@
 
 export {};
 
-const inputArr = [1, 2, 3];
+const inputArr = [3, 2, 1];
 
 const optimalSolution = (inputArr: number[]) => {
   console.log("inputArr ->", inputArr);
