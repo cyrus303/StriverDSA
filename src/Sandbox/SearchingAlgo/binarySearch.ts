@@ -6,7 +6,6 @@ const binarySearch = (inputArr: number[], target: number) => {
 
   while (left <= right) {
     const middle = Math.floor((left + right) / 2);
-    console.log(left, middle, right);
     if (inputArr[middle] === target) {
       return middle;
     } else if (target < inputArr[middle]) {
