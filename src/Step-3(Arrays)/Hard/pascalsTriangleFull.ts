@@ -33,10 +33,6 @@ const optimisedSolution = (numRows: number) => {
 
 // console.log(optimisedSolution(6));
 
-// const optimalSolution = (arr: number[]) => {};
-
-// console.log(optimalSolution(arr1));
-
 const pascalTriangle = (numRows: number) => {
   const result = [[1]];
 
@@ -53,3 +49,26 @@ const pascalTriangle = (numRows: number) => {
 };
 
 console.log(pascalTriangle(5));
+
+const generatRowElements = (numRows: number) => {
+  let rowElements = [1];
+  let ans = 1;
+
+  for (let i = 1; i < numRows; i++) {
+    ans = ans * (numRows - i);
+    ans = ans / i;
+    rowElements.push(ans);
+  }
+  return rowElements;
+};
+
+const optimalSolution = (row: number) => {
+  const result = [];
+  for (let i = 1; i <= row; i++) {
+    const rowElements = generatRowElements(i);
+    result.push(rowElements);
+  }
+  return result;
+};
+
+console.log(optimalSolution(5));
