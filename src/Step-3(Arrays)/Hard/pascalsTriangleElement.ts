@@ -12,7 +12,7 @@ const factorial = (num: number): number => {
   }
 };
 
-const pascalTriangle = (row: number, col: number) => {
+const bruteForce = (row: number, col: number) => {
   if (col > row) {
     console.log("Invalid position. Column cannot be greater than row.");
     return;
@@ -27,4 +27,21 @@ const pascalTriangle = (row: number, col: number) => {
   console.log(result);
 };
 
-pascalTriangle(8, 3);
+// bruteForce(8, 3);
+
+const nCr = (n: number, r: number) => {
+  let result = 1;
+
+  for (let i = 0; i < r; i++) {
+    result = result * (n - i);
+    result = result / (i + 1);
+  }
+  return result;
+};
+
+const optimisedSolution = (row: number, col: number) => {
+  const element = nCr(row - 1, col - 1);
+  return element;
+};
+
+console.log(optimisedSolution(7, 3));

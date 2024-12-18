@@ -33,7 +33,7 @@ const bruteForceSolution = (arr: number[], target: number) => {
   return count;
 };
 
-// console.log(bruteForceSolution(numbers, target));
+console.log(bruteForceSolution(numbers, target));
 
 const optimisedSolution = (arr: number[], target: number) => {
   const HASHMAP = new Map();
@@ -46,12 +46,9 @@ const optimisedSolution = (arr: number[], target: number) => {
     preSum += num;
     if (HASHMAP.has(preSum - target)) {
       count = count + HASHMAP.get(preSum - target);
-      console.log(count);
     }
     HASHMAP.set(preSum, (HASHMAP.get(preSum) || 0) + 1);
   }
-
-  console.log(HASHMAP);
   return count;
 };
 
