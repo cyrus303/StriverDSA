@@ -17,7 +17,9 @@
 
 export {};
 
-const optimisedSolution = (numRows: number) => {
+//NOTE: Neetcode solution
+
+const optimisedSolutionOne = (numRows: number) => {
   const result = [[1]];
 
   for (let i = 0; i < numRows - 1; i++) {
@@ -31,7 +33,9 @@ const optimisedSolution = (numRows: number) => {
   return result;
 };
 
-// console.log(optimisedSolution(6));
+console.log(optimisedSolutionOne(6));
+
+//NOTE: Neetcode solution
 
 const pascalTriangle = (numRows: number) => {
   const result = [[1]];
@@ -72,3 +76,31 @@ const optimalSolution = (row: number) => {
 };
 
 console.log(optimalSolution(5));
+
+const nCr = (row: number, col: number) => {
+  let result = 1;
+  for (let i = 0; i < col; i++) {
+    result = result * (row - i);
+    result = result / (i + 1);
+  }
+  return result;
+};
+
+const bruteForceSolution = (numRows: number) => {
+  const triangle = [[1]];
+  for (let i = 1; i < numRows; i++) {
+    let rowElements = [1];
+    for (let j = 1; j <= i; j++) {
+      let element = nCr(i, j);
+      rowElements.push(element);
+    }
+    triangle.push(rowElements);
+  }
+  return triangle;
+};
+
+console.log(bruteForceSolution(5));
+
+const optimisedSolution = (numRows: number) => {};
+
+console.log(optimisedSolution(5));
