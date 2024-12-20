@@ -85,16 +85,25 @@ class SinglyLinkedList {
 
   get(index: number) {
     if (!this.head) return undefined;
-    else if (index < 0 || index >= this.length) return "Invalid index";
+    else if (index < 0 || index >= this.length) return undefined;
 
     let current = this.head;
     let counter = 0;
 
-    while (counter !== index && current.next) {
+    while (counter !== index) {
+      if (!current.next) return undefined;
       current = current.next;
       counter++;
     }
     return current;
+  }
+
+  set(index: number, value: any) {
+    const node = this.get(index);
+    if (!node) return false;
+
+    node.value = value;
+    return true;
   }
 }
 
@@ -115,7 +124,8 @@ const printElements = () => {
   }
 };
 
-console.log(list.unshift(99));
-
 printElements();
 console.log(list.get(2));
+
+console.log(list.set(2, "world"));
+printElements();
