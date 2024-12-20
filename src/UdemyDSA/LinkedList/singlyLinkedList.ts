@@ -57,13 +57,52 @@ class SinglyLinkedList {
     }
     return current;
   }
+
+  shift() {
+    if (!this.head) return undefined;
+    const oldHead = this.head;
+    this.head = oldHead.next;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return oldHead;
+  }
+
+  unshift(value: any) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+  get(index: number) {
+    if (!this.head) return undefined;
+    else if (index < 0 || index >= this.length) return "Invalid index";
+
+    let current = this.head;
+    let counter = 0;
+
+    while (counter !== index && current.next) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
 }
 
 const list = new SinglyLinkedList();
+
 list.push(10);
 list.push("hi");
 list.push("hello");
-list.push(90);
 
 const printElements = () => {
   let current = list.head;
@@ -75,26 +114,8 @@ const printElements = () => {
     current = current.next;
   }
 };
-printElements();
 
-console.log(list.pop());
-console.log("\n");
+console.log(list.unshift(99));
 
 printElements();
-
-console.log(list.pop());
-console.log("\n");
-
-printElements();
-
-console.log(list.pop());
-console.log("\n");
-
-printElements();
-
-console.log(list.pop());
-console.log("\n");
-
-printElements();
-
-console.log(list.pop());
+console.log(list.get(2));
