@@ -105,6 +105,37 @@ class SinglyLinkedList {
     node.value = value;
     return true;
   }
+
+  insert(index: number, value: any) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(value);
+    if (index === this.length) return !!this.push(value);
+
+    const newNode = new Node(value);
+    const prevNode = this.get(index - 1);
+
+    if (prevNode) {
+      newNode.next = prevNode.next;
+      prevNode.next = newNode;
+      this.length++;
+    }
+    return true;
+  }
+
+  remove(index: number) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const prevNode = this.get(index - 1);
+    if (!prevNode || !prevNode.next) return undefined;
+
+    const removed = prevNode.next;
+    prevNode.next = removed.next;
+    this.length--;
+
+    return removed;
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -125,7 +156,7 @@ const printElements = () => {
 };
 
 printElements();
-console.log(list.get(2));
+console.log("\n -- remove");
 
-console.log(list.set(2, "world"));
+console.log(list.remove(1));
 printElements();
