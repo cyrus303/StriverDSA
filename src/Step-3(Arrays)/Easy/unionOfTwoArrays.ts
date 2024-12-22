@@ -42,8 +42,8 @@ export {};
 
 const n = 10;
 const m = 7;
-const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const arr2 = [2, 3, 4, 4, 5, 11, 12];
+const arr1 = [1, 3, 5, 7, 9, 12];
+const arr2 = [2, 4, 6, 8];
 
 type Props = {
   n: number;
@@ -53,14 +53,55 @@ type Props = {
 };
 const bruteForceSolution = ({ n, m, arr1, arr2 }: Props) => {
   const uniqueArr = [...arr1, ...arr2];
-  console.log(new Set(uniqueArr));
+  const result = Array.from(new Set(uniqueArr)).sort((a, b) => a - b);
+  return result;
 };
 
 console.log(bruteForceSolution({ n, m, arr1, arr2 }));
 
-// const optimisedSolution = (arr: number[]) => {};
+const optimisedSolution = ({ n, m, arr1, arr2 }: Props) => {
+  let i = 0;
+  let j = 0;
+  let result = [];
 
-// console.log(optimisedSolution(arr1));
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] < arr2[j]) {
+      if (result.length === 0 || result.at(-1) !== arr1[i]) {
+        result.push(arr1[i]);
+      }
+      i++;
+    } else if (arr1[i] > arr2[j]) {
+      if (result.length === 0 || result.at(-1) !== arr2[j]) {
+        result.push(arr2[j]);
+      }
+      j++;
+    } else if (arr1[i] === arr2[j]) {
+      if (result.length === 0 || result.at(-1) !== arr1[i]) {
+        result.push(arr1[i]);
+      }
+      i++;
+      j++;
+    }
+  }
+
+  while (i < arr1.length) {
+    if (result.at(-1) !== arr1[i]) {
+      result.push(arr1[i]);
+    }
+    i++;
+  }
+
+  while (j < arr2.length) {
+    if (result.at(-1) !== arr2[j]) {
+      result.push(arr2[j]);
+    }
+    j++;
+  }
+
+  return result;
+};
+
+console.log(optimisedSolution({ n, m, arr1, arr2 }));
 
 // const optimalSolution = (arr: number[]) => {};
 

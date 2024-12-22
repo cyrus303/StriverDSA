@@ -32,12 +32,13 @@ const optimalSolution = (inputArr: number[]) => {
   let len = inputArr.length;
   let pivotIndex = -1;
 
-  for (let i = len - 2; i >= 0; i--) {
-    if (inputArr[i] < inputArr[i + 1]) {
+  for (let i = len - 1; i > 0; i--) {
+    if (inputArr[i - 1] < inputArr[i]) {
       pivotIndex = i;
       break;
     }
   }
+
   for (let i = len - 1; i >= pivotIndex; i--) {
     if (inputArr[i] > inputArr[pivotIndex]) {
       [inputArr[pivotIndex], inputArr[i]] = [inputArr[i], inputArr[pivotIndex]];
