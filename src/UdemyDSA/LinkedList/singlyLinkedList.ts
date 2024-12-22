@@ -37,7 +37,6 @@ class SinglyLinkedList {
 
   pop() {
     if (!this.head) {
-      console.log("list is empty");
       return undefined;
     }
     let current = this.head;
@@ -47,8 +46,8 @@ class SinglyLinkedList {
       prev = current;
       current = current.next;
     }
+    prev.next = null;
     this.tail = prev;
-    this.tail.next = null;
     this.length--;
 
     if (this.length === 0) {
@@ -136,6 +135,16 @@ class SinglyLinkedList {
 
     return removed;
   }
+
+  printElements() {
+    let arr = [];
+    let current = list.head;
+    while (current) {
+      arr.push(current.value);
+      current = current.next;
+    }
+    console.log(arr);
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -143,20 +152,4 @@ const list = new SinglyLinkedList();
 list.push(10);
 list.push("hi");
 list.push("hello");
-
-const printElements = () => {
-  let current = list.head;
-  while (current) {
-    console.log({
-      value: current.value,
-      next: current.next ? current.next.value : null,
-    });
-    current = current.next;
-  }
-};
-
-printElements();
-console.log("\n -- remove");
-
-console.log(list.remove(1));
-printElements();
+list.printElements();
