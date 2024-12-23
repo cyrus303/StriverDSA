@@ -61,6 +61,7 @@ const optimisedSolution = (arr: number[]) => {
       let sum = arr[i] + arr[left] + arr[right];
 
       if (sum === 0) {
+        // duplicate values wont get added
         result.add(JSON.stringify([arr[i], arr[left], arr[right]]));
         left++;
         right--;
@@ -76,6 +77,34 @@ const optimisedSolution = (arr: number[]) => {
 
 console.log(optimisedSolution(nums));
 
-// const optimalSolution = (arr: number[]) => {};
+const optimalSolution = (arr: number[]) => {
+  let ans = [];
+  arr.sort((a, b) => a - b);
 
-// console.log(optimalSolution(arr1));
+  for (let i = 0; i < arr.length; i++) {
+    // skip duplicates
+    if (i !== 0 && arr[i] === arr[i - 1]) continue;
+
+    let left = i + 1;
+    let right = arr.length - 1;
+
+    while (left < right) {
+      let sum = arr[i] + arr[left] + arr[right];
+      if (sum < 0) {
+        left++;
+      } else if (sum > 0) {
+        right--;
+      } else {
+        let temp = [arr[i], arr[left], arr[right]];
+        ans.push(temp);
+        left++;
+        right--;
+        // skip duplicates
+        while (left < right && arr[left] === arr[left - 1]) left++;
+        while (left < right && arr[right] === arr[right + 1]) right++;
+      }
+    }
+  }
+};
+
+console.log(optimalSolution(nums));
