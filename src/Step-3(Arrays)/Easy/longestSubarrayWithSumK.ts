@@ -16,7 +16,7 @@
 export {};
 
 const numbers = [2, 3, 5, 1, 9];
-const target = 9;
+const target = 10;
 
 const bruteForceSolution = (arr: number[], target: number) => {
   let longest = -Infinity;
@@ -56,3 +56,26 @@ const optimisedSolution = (arr: number[], target: number) => {
 };
 
 console.log(optimisedSolution(numbers, target));
+
+const optimalSolution = (arr: number[], target: number) => {
+  const HASHMAP = new Map();
+  let maxLength = 0;
+  let sum = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    if (sum === target) {
+      maxLength = Math.max(maxLength, i + 1);
+    }
+    let compliment = target - arr[i];
+    if (HASHMAP.has(compliment)) {
+      let len = HASHMAP.get(compliment);
+      maxLength = Math.max(len, maxLength);
+    } else {
+      HASHMAP.set(sum, i);
+    }
+  }
+  return maxLength;
+};
+
+console.log(optimalSolution(numbers, target));
