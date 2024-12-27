@@ -32,30 +32,46 @@ export {};
 
 const intervals = [
   [1, 3],
-  [2, 6],
   [8, 10],
+  [2, 6],
+  [9, 12],
   [15, 18],
 ];
 
 const bruteForceSolution = (arr: number[][]) => {
-  console.log("input ->", arr);
+  arr.sort((a, b) => a[0] - b[0]);
 
-  const result = [];
   for (let i = 0; i < arr.length - 1; i++) {
     if (arr[i][1] >= arr[i + 1][0]) {
-      result.push([arr[i][0], arr[i + 1][1]]);
+      arr[i][1] = Math.max(arr[i][1], arr[i + 1][1]);
+      arr.splice(i + 1, 1);
+      i--;
+    }
+  }
+  return arr;
+};
+
+console.log(bruteForceSolution(intervals));
+
+const optimisedSolution = (arr: number[][]) => {
+  const result = [];
+  arr.sort((a, b) => a[0] - b[0]);
+
+  let prevInterval = arr[0];
+  result.push(prevInterval);
+
+  for (let interval of arr) {
+    if (interval[0] <= prevInterval[1]) {
+      prevInterval[1] = Math.max(prevInterval[1], interval[1]);
     } else {
-      result.push(arr[i]);
+      prevInterval = interval;
+      result.push(prevInterval);
     }
   }
   return result;
 };
 
-console.log(bruteForceSolution(intervals));
-
-// const optimisedSolution = (arr: number[]) => {};
-
-// console.log(optimisedSolution(arr1));
+console.log(optimisedSolution(intervals));
 
 // const optimalSolution = (arr: number[]) => {};
 
