@@ -53,10 +53,56 @@ const bruteForceSolution = (arr: number[]) => {
 
 console.log(bruteForceSolution(numbers));
 
-// const optimisedSolution = (arr: number[]) => {};
+const merge = (arr: number[], start: number, mid: number, end: number) => {
+  const temp = [];
+  let i = start;
+  let j = mid + 1;
+  let inversionCount = 0;
 
-// console.log(optimisedSolution(arr1));
+  while (i <= mid && j <= end) {
+    if (arr[i] <= arr[j]) {
+      temp.push(arr[i]);
+      i++;
+    } else {
+      temp.push(arr[j]);
+      j++;
+      inversionCount += mid - i + 1;
+    }
+  }
 
-// const optimalSolution = (arr: number[]) => {};
+  while (i <= mid) {
+    temp.push(arr[i]);
+    i++;
+  }
 
-// console.log(optimalSolution(arr1));
+  while (j <= end) {
+    temp.push(arr[j]);
+    j++;
+  }
+
+  for (let idx = 0; idx < temp.length; idx++) {
+    arr[idx + start] = temp[idx];
+  }
+  return inversionCount;
+};
+
+const mergeSort = (arr: number[], start: number, end: number): number => {
+  if (start < end) {
+    const mid = Math.floor(start + (end - start) / 2);
+
+    const leftInvCount = mergeSort(arr, start, mid);
+    const rightInvCount = mergeSort(arr, mid + 1, end);
+
+    const mergeInvCount = merge(arr, start, mid, end);
+
+    return leftInvCount + rightInvCount + mergeInvCount;
+  }
+  return 0;
+};
+
+const optimisedSolution = (arr: number[]) => {
+  const ans = mergeSort(arr, 0, arr.length - 1);
+  return ans;
+};
+
+console.log(optimisedSolution(numbers));
