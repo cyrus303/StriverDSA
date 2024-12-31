@@ -47,11 +47,6 @@ const merge = (arr: number[], start: number, mid: number, end: number) => {
   let right = mid + 1;
 
   for (let left = start; left <= mid; left++) {
-    //   for (let right = mid + 1; right <= end; right++) {
-    //     if (arr[left] > 2 * arr[right]) {
-    //       reverseCount++;
-    //     }
-    //   }
     while (right <= end && arr[left] > 2 * arr[right]) {
       right++;
     }
