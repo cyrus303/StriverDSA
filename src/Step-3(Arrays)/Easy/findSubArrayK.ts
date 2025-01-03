@@ -20,7 +20,7 @@
 // Input: arr[] = [5,3,4], target = 2
 // Output: [-1]
 // Explanation: There is no subarray with sum 2.
-
+export {};
 const numbers = [1, 2, 3, 7, 5];
 const target = 12;
 
