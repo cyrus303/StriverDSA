@@ -20,7 +20,7 @@
 
 export {};
 
-const arr = [5];
+const arr = [3, 3, 7, 7, 10, 11, 11];
 
 // const bruteForceSolution = (arr: number[]) => {};
 //
