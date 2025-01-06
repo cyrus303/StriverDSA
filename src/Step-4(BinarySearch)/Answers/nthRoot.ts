@@ -6,7 +6,6 @@ const M = 69;
 // const bruteForceSolution = (arr: number[]) => {};
 //
 // console.log(bruteForceSolution(numbers));
-
 const optimisedSolution = (N: number, M: number) => {
   let start = 1;
   let end = M;
