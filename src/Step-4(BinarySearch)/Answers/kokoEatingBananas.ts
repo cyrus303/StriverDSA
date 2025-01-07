@@ -29,12 +29,24 @@
 
 export {};
 
-const piles = [3, 6, 7, 11];
-const h = 8;
+const piles = [30, 11, 23, 4, 20];
+const h = 5;
 
-// const bruteForceSolution = (arr: number[]) => {};
-//
-// console.log(bruteForceSolution(numbers));
+const bruteForceSolution = (piles: number[], hr: number) => {
+  const max = Math.max(...piles);
+  for (let i = 1; i <= max; i++) {
+    let totalHr = 0;
+    for (let bananas of piles) {
+      totalHr += Math.ceil(bananas / i);
+    }
+
+    if (totalHr <= hr) {
+      return i;
+    }
+  }
+};
+
+console.log(bruteForceSolution(piles, h));
 
 const calculateTotalEatingCount = (arr: number[], hourly: number) => {
   let totalHours = 0;
