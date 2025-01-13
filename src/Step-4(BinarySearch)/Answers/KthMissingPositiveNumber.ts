@@ -19,12 +19,24 @@
 
 export {};
 
-const arr = [2, 3, 4, 7, 11];
-const target = 5;
+const arr = [1, 2, 3, 4];
+const target = 2;
 
-// const bruteForceSolution = (arr: number[]) => {};
-//
-// console.log(bruteForceSolution(numbers));
+const bruteForceSolution = (arr: number[], target: number) => {
+  let missingNo = -1;
+  let n = arr.length;
+
+  for (let i = 0; i < n; i++) {
+    missingNo = arr[i] - (i + 1);
+    if (missingNo >= target) {
+      return arr[i - 1] + (target - (arr[i - 1] - i));
+    }
+  }
+
+  if (missingNo === 0) return arr[n - 1] + target;
+};
+
+console.log(bruteForceSolution(arr, target));
 
 const optimisedSolution = (arr: number[], target: number) => {
   let start = 0;
