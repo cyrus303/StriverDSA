@@ -32,12 +32,12 @@ const threshold = 5;
 //
 // console.log(bruteForceSolution(numbers));
 
-const helper = (arr: number[], divisor: number, threshold: number) => {
+const helper = (arr: number[], divisor: number) => {
   let ans = 0;
   for (let num of arr) {
     ans += Math.ceil(num / divisor);
   }
-  return ans <= threshold;
+  return ans;
 };
 
 const optimisedSolution = (arr: number[], threshold: number) => {
@@ -47,7 +47,8 @@ const optimisedSolution = (arr: number[], threshold: number) => {
 
   while (start <= end) {
     const mid = Math.floor((start + end) / 2);
-    if (helper(arr, mid, threshold)) {
+    const sumOfDivisors = helper(arr, mid);
+    if (sumOfDivisors <= threshold) {
       smallestDivisor = mid;
       end = mid - 1;
     } else {
