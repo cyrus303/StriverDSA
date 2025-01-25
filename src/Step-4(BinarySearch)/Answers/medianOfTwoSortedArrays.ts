@@ -61,7 +61,7 @@ const bruteForceSolution = (nums1: number[], nums2: number[]) => {
   }
 };
 
-// console.log(bruteForceSolution(nums1, nums2));
+console.log(bruteForceSolution(nums1, nums2));
 
 const optimisedSolution = (nums1: number[], nums2: number[]) => {
   let n1 = nums1.length;
