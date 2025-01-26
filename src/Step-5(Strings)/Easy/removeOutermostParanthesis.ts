@@ -33,24 +33,21 @@ import Stack from "../../Utils/stack";
 const inputStr = "(()())";
 
 const bruteForceSolution = (inputStr: string) => {
-  const n = inputStr.length;
-
   const stack = [];
   const ans = [];
 
-  for (let i = 0; i < n; i++) {
-    let element = inputStr[i];
-    if (element === "(") {
+  for (const char of inputStr) {
+    if (char === "(") {
       if (stack.length === 0) {
-        stack.push(element);
+        stack.push(char);
       } else {
-        stack.push(element);
-        ans.push(element);
+        stack.push(char);
+        ans.push(char);
       }
-    } else if (element === ")") {
+    } else if (char === ")") {
       stack.pop();
       if (stack.length !== 0) {
-        ans.push(element);
+        ans.push(char);
       }
     }
   }
@@ -61,19 +58,16 @@ const bruteForceSolution = (inputStr: string) => {
 console.log(bruteForceSolution(inputStr));
 
 const optimisedSolution = (str: string) => {
-  const n = str.length;
   const ans = [];
   let count = 0;
 
-  for (let i = 0; i < n; i++) {
-    const element = str[i];
-
-    if (element === "(") {
-      if (count > 0) ans.push(element);
+  for (const char of str) {
+    if (char === "(") {
+      if (count > 0) ans.push(char);
       count++;
-    } else if (element === ")") {
+    } else if (char === ")") {
       count--;
-      if (count > 0) ans.push(element);
+      if (count > 0) ans.push(char);
     }
   }
 
