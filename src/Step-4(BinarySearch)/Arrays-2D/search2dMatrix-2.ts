@@ -40,11 +40,11 @@ const optimisedSolution = (arr: number[][]) => {
   let col = m - 1;
 
   while (row < n && col >= 0) {
-    if (arr[row][col] === target) return [row, col];
+    if (arr[row][col] === target) return true;
     else if (arr[row][col] < target) row++;
     else col--;
   }
-  return [-1, -1];
+  return false;
 };
 
 console.log(optimisedSolution(arr));
