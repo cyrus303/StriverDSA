@@ -19,6 +19,20 @@ export {};
 
 const input = ["cluster", "clue", "clutch", "club", "clumsy"];
 
+const input2 = [
+  "cluster",
+  "clue",
+  "clutch",
+  "club",
+  "clumsy",
+  "apple",
+  "anchor",
+  "antelope",
+  "banana",
+  "basket",
+  "butterfly",
+];
+
 const bruteForceSolution = (str: string[]) => {
   let ans = "";
   str = str.sort();
@@ -36,7 +50,7 @@ const bruteForceSolution = (str: string[]) => {
   return ans;
 };
 
-console.log(bruteForceSolution(input));
+console.log(bruteForceSolution(input2));
 
 // const optimisedSolution = (arr: number[]) => {};
 //
