@@ -24,15 +24,14 @@ const goal = "cedab";
 
 const bruteForceSolution = (s: string, goal: string) => {
   if (s.length !== goal.length) return false;
-  const range = s + s;
-  return range.includes(goal);
+  const double = s + s;
+  return double.includes(goal);
 };
 
 console.log(bruteForceSolution(s, goal));
 
 const optimisedSolution = (s: string, goal: string) => {
   if (s.length !== goal.length) return false;
-
   const double = s + s;
 
   for (let i = 0; i < s.length; i++) {
