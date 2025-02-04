@@ -52,11 +52,11 @@ const bruteForceSolution = (str: string) => {
 
 console.log("BF ->", bruteForceSolution(input));
 
-const findBCount = (freqMap: any) => {
+const findBCount = (freqMap: Map<string, number>) => {
   let maxFreq = 0;
   let minFreq = Infinity;
 
-  for (const [key, value] of freqMap) {
+  for (const [_key, value] of freqMap) {
     maxFreq = Math.max(maxFreq, value);
     minFreq = Math.min(minFreq, value);
   }
@@ -65,7 +65,6 @@ const findBCount = (freqMap: any) => {
 };
 
 const optimisedSolution = (str: string) => {
-  console.log(str);
   let count = 0;
 
   for (let i = 0; i < str.length; i++) {
