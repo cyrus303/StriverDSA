@@ -17,21 +17,21 @@
 export {};
 
 class Node {
-  value: any;
+  value: number;
   next: Node | null;
 
-  constructor(value: any) {
+  constructor(value: number) {
     this.value = value;
     this.next = null;
   }
 }
 
 class BruteForceSolution {
-  getCount(head: Node): number {
-    let count = 1;
+  getCount(head: Node | null): number {
+    let count = 0;
 
     let node = head;
-    while (node.next !== null) {
+    while (node !== null) {
       count++;
       node = node.next;
     }
