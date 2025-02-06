@@ -44,6 +44,7 @@ class Solution {
     }
 
     let middle = Math.floor(length / 2);
+
     current = head;
 
     for (let i = 0; i < middle; i++) {
@@ -57,7 +58,7 @@ class Solution {
     let fast = head;
     let slow = head;
 
-    while (fast && slow && fast.next) {
+    while (fast !== null && slow !== null && fast.next !== null) {
       fast = fast.next.next;
       slow = slow.next;
     }
@@ -65,7 +66,7 @@ class Solution {
   }
 }
 
-const values = [1, 2, 3, 4, 5];
+const values = [1, 2, 3, 4, 5, 6];
 const head = new Node(values[0]);
 let current = head;
 
