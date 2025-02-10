@@ -33,18 +33,20 @@ class Node {
 
 class Solution {
   bruteForceSolution(head: Node | null) {
-    let temp = head;
+    if (head === null || head.next === null) return head;
+    let temp: Node | null = head;
     let arr = [];
 
-    while (temp !== null && temp.next !== null) {
+    while (temp !== null) {
       arr.push(temp.value);
+      if (temp.next === null) break;
       temp = temp.next.next;
     }
-    arr.push(temp.value);
 
     temp = head.next;
-    while (temp !== null && temp.next !== null) {
+    while (temp !== null) {
       arr.push(temp.value);
+      if (temp.next === null) break;
       temp = temp.next.next;
     }
 
@@ -56,29 +58,28 @@ class Solution {
       temp = temp.next;
     }
 
-    // temp = head;
-    // let i = 0;
-    // let j = 1;
-    // while (temp !== null) {
-    //   if (i < arr.length) {
-    //     temp.value = arr[i];
-    //     i = i + 2;
-    //   } else {
-    //     temp.value = arr[j];
-    //     j = j + 2;
-    //   }
-    //   temp = temp.next;
-    // }
     return head;
   }
 
   optimisedSolution(head: Node | null) {
-    let odd = new Node(-1);
-    let even = new Node(-1);
+    if (head === null) return head;
 
-    let curr = head;
-    let nodeIndex = 1;
-    while (curr !== null) {}
+    let odd = head;
+
+    let even = head.next;
+    let evenHead = even;
+
+    while (even !== null && even.next !== null) {
+      odd.next = odd.next.next;
+      odd = odd.next;
+
+      even.next = even.next.next;
+      even = even.next;
+    }
+
+    odd.next = evenHead;
+
+    return head;
   }
 }
 
@@ -96,5 +97,5 @@ fourth.next = fifth;
 fifth.next = null;
 
 const solution = new Solution();
-console.log(solution.bruteForceSolution(head));
-// console.log(solution.optimisedSolution(head));
+// console.log(solution.bruteForceSolution(head));
+console.log(solution.optimisedSolution(head));
