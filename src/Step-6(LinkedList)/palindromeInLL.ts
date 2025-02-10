@@ -37,17 +37,6 @@ class Solution {
       temp = temp.next;
     }
 
-    // let i = 0;
-    // let j = arr.length - 1;
-    //
-    // while (i <= j) {
-    //   if (arr[i] !== arr[j]) {
-    //     return false;
-    //   }
-    //   i++;
-    //   j--;
-    // }
-
     temp = head;
 
     while (temp !== null) {
@@ -64,30 +53,56 @@ class Solution {
     let slow = head;
     let fast = head;
 
-    while (slow && fast && fast.next) {
+    while (fast !== null && fast.next !== null) {
       slow = slow.next;
       fast = fast.next.next;
     }
-    let i = head;
-    let j = slow;
 
-    return slow?.value;
+    const newHead = reverseList(slow);
+
+    let first = head;
+    let second = newHead;
+
+    while (second !== null) {
+      if (first.val !== second.val) {
+        return false;
+      }
+      first = first.next;
+      second = second.next;
+    }
+
+    return true;
   }
+}
+
+function reverseList(node: Node | null) {
+  let temp = node;
+  let prev = null;
+
+  while (temp !== null) {
+    let frontNode = temp.next;
+    temp.next = prev;
+    prev = temp;
+    temp = frontNode!;
+  }
+  return prev;
 }
 
 // with a loop for testing
 const head = new Node(1);
 const second = new Node(2);
 const third = new Node(3);
-const fourth = new Node(2);
-const fifth = new Node(1);
+const fourth = new Node(3);
+const fifth = new Node(2);
+const sixth = new Node(1);
 
 head.next = second;
 second.next = third;
 third.next = fourth;
 fourth.next = fifth;
-fifth.next = null;
+fifth.next = sixth;
+sixth.next = null;
 
 const solution = new Solution();
-console.log(solution.bruteForceSolution(head));
+// console.log(solution.bruteForceSolution(head));
 console.log(solution.optimisedSolution(head));
