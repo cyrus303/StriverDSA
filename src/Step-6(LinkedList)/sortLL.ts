@@ -51,10 +51,61 @@ class Solution {
     return head;
   }
 
-  optimisedSolution(head: Node | null) {}
+  optimisedSolution(head: Node | null): Node | null {
+    if (head === null || head.next === null) return head;
+
+    let middle = findMiddle(head);
+
+    let end = middle.next;
+    let start: Node | null = head;
+    middle.next = null;
+
+    start = this.optimisedSolution(start);
+    end = this.optimisedSolution(end);
+
+    return mergeTwoSortedLL(start, end);
+  }
 }
 
-// with a loop for testing
+const findMiddle = (head: Node | null): Node | null => {
+  if (head === null || head.next === null) return head;
+  let slow: Node | null = head;
+  let fast: Node | null = head.next;
+
+  while (slow !== null && fast !== null && fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return slow;
+};
+
+const mergeTwoSortedLL = (
+  list1: Node | null,
+  list2: Node | null,
+): Node | null => {
+  let dummyNode = new Node(Infinity);
+  let current = dummyNode;
+
+  while (list1 !== null && list2 !== null) {
+    if (list1.value <= list2.value) {
+      current.next = list1;
+      list1 = list1.next;
+    } else {
+      current.next = list2;
+      list2 = list2.next;
+    }
+    current = current.next;
+  }
+
+  if (list1 !== null) {
+    current.next = list1;
+  } else {
+    current.next = list2;
+  }
+
+  return dummyNode.next;
+};
+
 const head = new Node(5);
 const second = new Node(4);
 const third = new Node(3);
@@ -68,5 +119,5 @@ fourth.next = fifth;
 fifth.next = null;
 
 const solution = new Solution();
-console.log(solution.bruteForceSolution(head));
-// console.log(solution.optimisedSolution(head));
+// console.log(solution.bruteForceSolution(head));
+console.log(solution.optimisedSolution(head));
