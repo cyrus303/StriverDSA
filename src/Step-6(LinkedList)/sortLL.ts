@@ -56,14 +56,14 @@ class Solution {
 
     let middle = findMiddle(head);
 
-    let end = middle.next;
-    let start: Node | null = head;
+    let right = middle.next;
+    let left: Node | null = head;
     middle.next = null;
 
-    start = this.optimisedSolution(start);
-    end = this.optimisedSolution(end);
+    left = this.optimisedSolution(left);
+    right = this.optimisedSolution(right);
 
-    return mergeTwoSortedLL(start, end);
+    return mergeTwoSortedLL(left, right);
   }
 }
 
