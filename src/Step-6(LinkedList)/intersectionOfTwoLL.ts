@@ -78,7 +78,67 @@ class Solution {
     return null;
   }
 
-  optimisedSolution(headA: Node | null, headB: Node | null) {}
+  optimalSolution(headA: Node | null, headB: Node | null) {
+    let lengthA = 0;
+    let lengthB = 0;
+
+    let temp = headA;
+    while (temp !== null) {
+      lengthA++;
+      temp = temp.next;
+    }
+
+    temp = headB;
+    while (temp !== null) {
+      lengthB++;
+      temp = temp.next;
+    }
+
+    let offset = Math.abs(lengthA - lengthB);
+
+    let dummyA = headA;
+    let dummyB = headB;
+
+    if (lengthA > lengthB) {
+      while (offset > 0) {
+        dummyA = dummyA.next;
+        offset--;
+      }
+    } else {
+      while (offset > 0) {
+        dummyB = dummyB.next;
+        offset--;
+      }
+    }
+
+    while (dummyA !== dummyB && dummyA !== null && dummyB !== null) {
+      dummyA = dummyA.next;
+      dummyB = dummyB.next;
+    }
+
+    return dummyA;
+  }
+
+  optimisedSolution(headA: Node | null, headB: Node | null) {
+    let temp1 = headA;
+    let temp2 = headB;
+
+    while (temp1 !== temp2) {
+      if (temp1 === null) {
+        temp1 = headB;
+      } else {
+        temp1 = temp1.next;
+      }
+
+      if (temp2 === null) {
+        temp2 = headA;
+      } else {
+        temp2 = temp2.next;
+      }
+    }
+
+    return temp1;
+  }
 }
 
 // ListA: [3,7,8,10,1,2,6,9,12,4,5]
@@ -122,5 +182,6 @@ fifthB.next = sixthB;
 sixthB.next = sixthA; // Intersection point
 
 const solution = new Solution();
-console.log(solution.bruteForceSolution(headA, headB));
+// console.log(solution.bruteForceSolution(headA, headB));
+console.log(solution.optimalSolution(headA, headB));
 // console.log(solution.optimisedSolution(head));
