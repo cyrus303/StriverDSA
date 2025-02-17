@@ -80,14 +80,80 @@ class Solution {
     return dummyList.next;
   }
 
-  optimisedSolution(list1: Node | null, list2: Node | null) {}
+  optimisedSolution(list1: Node | null, list2: Node | null) {
+    let result = new Node(-1);
+    let current = result;
+
+    let carry = 0;
+
+    while (list1 !== null && list2 !== null) {
+      let sum = carry;
+
+      if (list1 !== null) {
+        sum = sum + list1.value;
+        list1 = list1.next;
+      }
+
+      if (list2 !== null) {
+        sum = sum + list2.value;
+        list2 = list2.next;
+      }
+
+      let value = sum % 10;
+      carry = Math.floor(sum / 10);
+
+      current.next = new Node(value);
+      current = current.next;
+    }
+
+    if (carry === 1) current.next = new Node(carry);
+
+    return result.next;
+  }
+
+  addition(list1: Node | null, list2: Node | null) {
+    let temp1 = list1;
+    let temp2 = list2;
+
+    let dummy = new Node(-1);
+    let current = dummy;
+    let carry = 0;
+
+    while (temp1 !== null || temp2 !== null || carry) {
+      const value1 = temp1?.value || 0;
+      const value2 = temp2?.value || 0;
+
+      const sum = value1 + value2 + carry;
+      carry = Math.floor(sum / 10);
+
+      current.next = new Node(sum % 10);
+      current = current.next;
+
+      temp1 = temp1?.next || null;
+      temp2 = temp2?.next || null;
+    }
+
+    return dummy.next;
+  }
 }
 
-const list1 = new Node(1);
-const second = new Node(2);
-const third = new Node(3);
-const fourth = new Node(4);
-const fifth = new Node(5);
+function printLinkedList(head: Node | null) {
+  if (!head) return "Empty list";
+  let output = [];
+  let current = head;
+  while (current) {
+    output.push(current.value);
+    //@ts-ignore
+    current = current.next;
+  }
+  console.log(output.join(" → "));
+}
+
+const list1 = new Node(9);
+const second = new Node(9);
+const third = new Node(9);
+const fourth = new Node(9);
+const fifth = new Node(9);
 
 list1.next = second;
 second.next = third;
@@ -95,18 +161,18 @@ third.next = fourth;
 fourth.next = fifth;
 fifth.next = null;
 
-const list2 = new Node(6);
-const two = new Node(8);
-const three = new Node(3);
-const four = new Node(7);
-const five = new Node(1);
+const list2 = new Node(9);
+const two = new Node(9);
+const three = new Node(9);
+// const four = new Node(9);
+// const five = new Node(9);
 
 list2.next = two;
 two.next = three;
-three.next = four;
-four.next = five;
-five.next = null;
+three.next = null;
+// four.next = five;
+// five.next = null;
 
 const solution = new Solution();
-console.log(solution.bruteForceSolution(list1, list2));
-// console.log(solution.optimisedSolution(head));
+// console.log(solution.bruteForceSolution(list1, list2));
+console.log(solution.optimisedSolution(list1, list2));
