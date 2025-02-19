@@ -86,7 +86,7 @@ class Solution {
 
     let carry = 0;
 
-    while (list1 !== null && list2 !== null) {
+    while (list1 !== null || list2 !== null) {
       let sum = carry;
 
       if (list1 !== null) {
