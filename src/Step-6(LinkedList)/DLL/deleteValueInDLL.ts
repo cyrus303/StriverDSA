@@ -101,6 +101,8 @@ class Solution {
           prevNode.next = nextNode;
         } else {
           newHead = nextNode;
+          nextNode.prev = null;
+          current.next = null;
         }
         if (nextNode) {
           nextNode.prev = prevNode;
