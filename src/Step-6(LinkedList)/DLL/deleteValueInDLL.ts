@@ -102,13 +102,13 @@ class Solution {
         } else {
           newHead = nextNode;
           nextNode.prev = null;
-          current.next = null;
         }
         if (nextNode) {
           nextNode.prev = prevNode;
         }
       }
 
+      current = current.next;
       current = current.next;
     }
     return newHead;
