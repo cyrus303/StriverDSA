@@ -39,7 +39,7 @@ const helper = (x: number, n: number): number => {
   return x * helper(x, n - 1);
 };
 
-console.log(bruteForceSolution(x, n));
+// console.log(bruteForceSolution(x, n));
 
 const optimisedSolution = (x: number, n: number) => {
   let ans = 1;
@@ -49,10 +49,9 @@ const optimisedSolution = (x: number, n: number) => {
     if (absN % 2 === 1) {
       ans = ans * x;
       absN = absN - 1;
-    } else {
-      x = x * x;
-      absN = Math.floor(absN / 2);
     }
+    x = x * x;
+    absN = Math.floor(absN / 2);
   }
   if (n < 0) return 1.0 / ans;
   return ans;
