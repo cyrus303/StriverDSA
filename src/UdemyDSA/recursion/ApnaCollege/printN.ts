@@ -6,4 +6,8 @@ const printNums = (num: number) => {
   return printNums(num - 1);
 };
 
-printNums(4);
+function main() {
+  printNums(4);
+}
+
+main();
