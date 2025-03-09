@@ -54,8 +54,9 @@ const daysNeeded = (weights: number[], capacity: number) => {
   let numberOfDays = 1;
 
   for (let weight of weights) {
-    currentShipWeight = currentShipWeight + weight;
-    if (currentShipWeight > capacity) {
+    if (currentShipWeight + weight <= capacity) {
+      currentShipWeight += weight;
+    } else {
       numberOfDays++;
       currentShipWeight = weight;
     }
