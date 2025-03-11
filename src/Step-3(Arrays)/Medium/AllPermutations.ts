@@ -54,7 +54,7 @@ const bruteForceSolution = (inputArr: number[]) => {
   return ansArr;
 };
 
-console.log("bruteForceSolution ->", bruteForceSolution(numbers));
+// console.log("bruteForceSolution ->", bruteForceSolution(numbers));
 
 //NOTE: Recusrion with string slice
 
@@ -77,14 +77,27 @@ function generatePermutations(arr: number[]) {
   return results;
 }
 
-console.log(generatePermutations(numbers));
+// console.log(generatePermutations(numbers));
 
 //BUG: generated permutations are not in order, logic is flawed for finding next permutation
 
+const helper = (
+  arr: number[],
+  subsets: number[],
+  i: number,
+  ansArr: number[][],
+) => {
+  if (i === arr.length) {
+    ansArr.push([...subsets]);
+    return;
+  }
+};
+
 const bruteForceSolutionTwo = (inputArr: number[]) => {
-  console.log("inputArr ->", inputArr);
   const ansArr: number[][] = [];
-  permutationHelper(inputArr, 0, ansArr);
+  let idx = 0;
+  let subsets: number[] = [];
+  helper(inputArr, subsets, idx, ansArr);
   console.log(ansArr);
 };
 
