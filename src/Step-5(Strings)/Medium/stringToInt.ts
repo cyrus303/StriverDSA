@@ -88,15 +88,16 @@
 
 export {};
 
-const str = "1337c0d3";
+const str = "    1337c0d3";
 
 const bruteForceSolution = (str: string) => {
-  let sign = 1;
-  let result = 0;
-
   if (str.length === 0) {
     return 0;
   }
+
+  str = str.trim();
+  let sign = 1;
+  let result = 0;
 
   if (str[0] === "-" || str[0] === "+") {
     if (str[0] === "-") {
