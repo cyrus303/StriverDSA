@@ -23,6 +23,8 @@
 // Constraints:
 // 1<=N<=100
 
+export {};
+
 class Stack {
   stack: number[];
 
@@ -51,42 +53,42 @@ class Stack {
   isEmpty() {
     return this.stack.length === 0;
   }
+
+  size() {
+    return this.stack.length;
+  }
 }
 
 // Example usage
+const input = [30, -5, 18, 14, -3];
 let stack = new Stack();
-stack.push(1);
-stack.push(2);
-stack.push(3);
+
+input.forEach((ele) => {
+  stack.push(ele);
+});
 
 const bruteForce = (stack: Stack) => {
-  let tempStack = new Stack();
+  const tempStack = new Stack();
+  let tempValue = null;
 
-  while (!stack.isEmpty()) {
-    let temp = stack.pop();
+  while (stack.size() !== 0) {
+    tempValue = stack.pop();
 
-    while (!tempStack.isEmpty() && tempStack.top() < temp) {
+    while (tempStack.size() !== 0 && tempStack.top() < tempValue) {
       stack.push(tempStack.pop());
     }
 
-    tempStack.push(temp);
+    tempStack.push(tempValue);
   }
 
-  while (!tempStack.isEmpty()) {
+  while (tempStack.size() !== 0) {
     stack.push(tempStack.pop());
   }
 };
 
-console.log("before");
-
 // Print the sorted stack
-while (!stack.isEmpty()) {
-  console.log(stack.pop());
-}
 
 bruteForce(stack);
-
-console.log("after");
 
 // Print the sorted stack
 while (!stack.isEmpty()) {
