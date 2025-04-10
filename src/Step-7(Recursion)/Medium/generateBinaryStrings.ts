@@ -9,7 +9,7 @@
 
 export {};
 
-const printBinaryStr = (depth: number, str: string, K: number) => {
+const optimisedSolution = (depth: number, str: string, K: number) => {
   if (depth === K) {
     console.log(str);
     return;
@@ -20,7 +20,7 @@ const printBinaryStr = (depth: number, str: string, K: number) => {
     let tempStr = str;
     tempStr += "0";
 
-    printBinaryStr(depth + 1, tempStr, K);
+    optimisedSolution(depth + 1, tempStr, K);
   }
 
   if (lastChar === "0") {
@@ -28,22 +28,36 @@ const printBinaryStr = (depth: number, str: string, K: number) => {
     let tempStr2 = str;
 
     tempStr1 += "0";
-    printBinaryStr(depth + 1, tempStr1, K);
+    optimisedSolution(depth + 1, tempStr1, K);
 
     tempStr2 += "1";
-    printBinaryStr(depth + 1, tempStr2, K);
+    optimisedSolution(depth + 1, tempStr2, K);
   }
 };
 
 function main() {
   const K = 5;
-  let depth = 1;
+  let depth = 0;
 
   let str1 = "0";
-  printBinaryStr(depth + 1, str1, K);
+  optimisedSolution(depth + 1, str1, K);
 
   let str2 = "1";
-  printBinaryStr(depth + 1, str2, K);
+  optimisedSolution(depth + 1, str2, K);
 }
 
 main();
+
+const bruteForce = (K: number) => {
+  const totalNumbers = 1 << K; //2^K in binary
+
+  for (let i = 0; i < totalNumbers; i++) {
+    const binaryStr = i.toString(2).padStart(K, "0");
+
+    if (!binaryStr.includes("11")) {
+      console.log(binaryStr);
+    }
+  }
+};
+
+bruteForce(3);
