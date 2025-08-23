@@ -33,3 +33,5 @@ stack.pop();
 
 console.log(stack.top());
 console.log(stack.size());
+
+export {};
