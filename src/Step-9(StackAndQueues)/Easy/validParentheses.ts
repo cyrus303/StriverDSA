@@ -36,7 +36,7 @@
 
 export {};
 
-const solution = (inputStr: string) => {
+const bruteForce = (inputStr: string) => {
   const stack: string[] = [];
 
   for (const ele of inputStr) {
@@ -57,41 +57,20 @@ const solution = (inputStr: string) => {
 };
 
 const optimised = (inputStr: string) => {
-  const stack: string[] = [];
+  const stack = [];
+  const bracketMap = new Map([
+    [")", "("],
+    ["]", "["],
+    ["}", "{"],
+  ]);
 
-  for (const ele of inputStr) {
-    switch (ele) {
-      case "(":
-      case "{":
-      case "[":
-        stack.push(ele);
-        break;
-
-      case ")":
-        if (stack.at(-1) === "(") {
-          stack.pop();
-        } else {
-          return false;
-        }
-        break;
-      case "]":
-        if (stack.at(-1) === "[") {
-          stack.pop();
-        } else {
-          return false;
-        }
-
-        break;
-      case "}":
-        if (stack.at(-1) === "{") {
-          stack.pop();
-        } else {
-          return false;
-        }
-        break;
-
-      default:
-        break;
+  for (const char of inputStr) {
+    if (!bracketMap.has(char)) {
+      stack.push(char);
+    } else {
+      if (stack.pop() !== bracketMap.get(char)) {
+        return false;
+      }
     }
   }
 
