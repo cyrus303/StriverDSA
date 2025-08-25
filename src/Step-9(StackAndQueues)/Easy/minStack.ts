@@ -50,23 +50,15 @@ class minStack {
   }
 
   pop() {
-    if (this.stack.length !== 0) this.stack.pop();
+    this.stack.pop();
   }
 
   top() {
-    if (this.stack.length === 0) {
-      return undefined;
-    } else {
-      return this.stack.at(-1)![0];
-    }
+    return this.stack.at(-1)![0];
   }
 
   getMin() {
-    if (this.stack.length === 0) {
-      return undefined;
-    } else {
-      return this.stack.at(-1)![1];
-    }
+    return this.stack.at(-1)![1];
   }
 }
 
@@ -81,3 +73,61 @@ console.log(st.getMin());
 st.pop();
 console.log(st.top());
 console.log(st.getMin());
+
+class optimisedMinStack {
+  stack: number[];
+  min: number;
+
+  constructor() {
+    this.stack = [];
+    this.min = Infinity;
+  }
+
+  push(val: number) {
+    if (this.stack.length === 0) {
+      this.min = val;
+      this.stack.push(val);
+      return;
+    }
+    if (val >= this.min) {
+      this.stack.push(val);
+    } else {
+      this.stack.push(2 * val - this.min);
+      this.min = val;
+    }
+  }
+
+  pop() {
+    if (this.stack.length === 0) return;
+    const poppedEl = this.stack.pop();
+    if (poppedEl < this.min) {
+      const val = 2 * this.min - poppedEl;
+      this.min = val;
+    }
+  }
+
+  top() {
+    if (this.stack.length === 0) return undefined;
+    const top = this.stack[this.stack.length - 1];
+    if (top < this.min) {
+      return this.min;
+    }
+    return top;
+  }
+
+  getMin() {
+    return this.min;
+  }
+}
+
+const op = new optimisedMinStack();
+
+op.push(-2);
+op.push(0);
+op.push(-3);
+
+console.log(op.getMin());
+
+op.pop();
+console.log(op.top());
+console.log(op.getMin());
