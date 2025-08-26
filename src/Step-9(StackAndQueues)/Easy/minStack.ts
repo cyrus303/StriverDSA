@@ -32,6 +32,8 @@
 // minStack.top();    // return 0
 // minStack.getMin(); // return -2
 
+export {};
+
 class minStack {
   stack: [number, number][];
 
