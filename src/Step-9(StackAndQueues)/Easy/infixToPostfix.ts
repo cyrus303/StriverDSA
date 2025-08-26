@@ -22,39 +22,29 @@ const priority = (char: string) => {
 };
 
 const bruteForce = (inputStr: string) => {
-  const st = [];
+  const stack = [];
   let ans = "";
 
-  let i = 0;
-
-  while (i < inputStr.length) {
-    if (
-      (inputStr[i] >= "A" && inputStr[i] <= "Z") ||
-      (inputStr[i] >= "a" && inputStr[i] <= "z") ||
-      (inputStr[i] >= "0" && inputStr[i] <= "9")
-    ) {
-      ans = ans + inputStr[i];
-    } else if (inputStr[i] === "(") {
-      st.push(inputStr[i]);
-    } else if (inputStr[i] === ")") {
-      while (st.length !== 0 && st.at(-1) !== "(") {
-        ans = ans + st.pop();
+  for (const ch of inputStr) {
+    if (/[A-Za-z0-9]/.test(ch)) {
+      ans += ch;
+    } else if (ch === "(") {
+      stack.push(ch);
+    } else if (ch === ")") {
+      while (stack.length !== 0 && stack.at(-1) !== "(") {
+        ans += stack.pop();
       }
-      st.pop();
+      stack.pop();
     } else {
-      while (
-        st.length !== 0 &&
-        priority(inputStr[i]) <= priority(st[st.length - 1])
-      ) {
-        ans = ans + st.pop();
+      while (stack.length !== 0 && priority(ch) <= priority(stack.at(-1)!)) {
+        ans += stack.pop();
       }
-      st.push(inputStr[i]);
+      stack.push(ch);
     }
-    i++;
   }
 
-  while (st.length !== 0) {
-    ans = ans + st.pop();
+  while (stack.length !== 0) {
+    ans += stack.pop();
   }
 
   return ans;
