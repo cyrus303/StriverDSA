@@ -1,16 +1,16 @@
-// Problem Statement: Given an infix expression, Your task is to convert the given infix expression to a postfix expression.
+// Problem Statement: Given an infix expression, Your task is to convert the given infix expression to a prefix expression.
 //
 // Examples:
 //
 // Example 1:
-// Input: a+b*(c^d-e)^(f+g*h)-i
-// Output: abcd^e-fgh*+^*+i-
-// Explanation: Infix to postfix
+// Input: x+y*z/w+u
+// Output: ++x/*yzwu
+// Explanation: Infix to prefix
 //
 // Example 2:
-// Input: (p+q)*(m-n)
-// Output: pq+mn-*
-// Explanation: Infix to postfix
+// Input: a+b
+// Output: +ab
+// Explanation: Infix to prefix
 
 export {};
 
@@ -50,5 +50,22 @@ const bruteForce = (inputStr: string) => {
   return ans;
 };
 
+const infixToPrefix = (inputStr: string) => {
+  // Step 1: Reverse input string
+  let reversed = inputStr.split("").reverse().join("");
+
+  // Step 2: Swap '(' and ')'
+  reversed = reversed
+    .replace(/\(/g, "#")
+    .replace(/\)/g, "(")
+    .replace(/#/g, ")");
+
+  // Step 3: Use existing infix to postfix on reversed string
+  const postfix = bruteForce(reversed);
+
+  // Step 4: Reverse the postfix result to get prefix
+  return postfix.split("").reverse().join("");
+};
+
 const input = "(p+q)*(m-n)";
-console.log("infix to postfix", bruteForce(input));
+console.log("infix to prefix", infixToPrefix(input)); // Expected output: *+pq-mn
