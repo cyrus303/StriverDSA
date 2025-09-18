@@ -50,5 +50,5 @@ const bruteForce = (inputStr: string) => {
   return ans;
 };
 
-const input = "(p+q)*(m-n)";
+const input = "(p+q)*m";
 console.log("infix to postfix", bruteForce(input));

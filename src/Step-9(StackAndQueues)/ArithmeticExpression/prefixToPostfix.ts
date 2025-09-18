@@ -16,9 +16,10 @@
 
 export {};
 
+const operator = new Set(["+", "-", "/", "^", "*"]);
+
 const prefixToPostfix = (inputStr: string) => {
   const stack: string[] = [];
-  const operator = new Set(["+", "-", "/", "^", "*"]);
 
   for (let i = inputStr.length - 1; i >= 0; i--) {
     const char = inputStr[i];
